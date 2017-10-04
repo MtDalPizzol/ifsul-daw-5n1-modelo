@@ -73,7 +73,7 @@ public class Pessoa implements Serializable {
     @Column(name = "telefone", length = 15, nullable = false)
     private String telefone;
 
-    @OneToMany(mappedBy = "pessoa", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "proprietario", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Carro> carros = new ArrayList<>();
     
     public Pessoa() {

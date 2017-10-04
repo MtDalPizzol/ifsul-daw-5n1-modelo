@@ -79,6 +79,9 @@ public class Seguro implements Serializable {
     
     @OneToMany(mappedBy = "seguro", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Cobertura> coberturas = new ArrayList<>();
+    
+    @OneToMany(mappedBy = "seguro", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Sinistro> sinistros = new ArrayList<>();
 
     public Seguro() {
         this.valorTotal = 0.0;
@@ -166,6 +169,14 @@ public class Seguro implements Serializable {
 
     public void setCoberturas(List<Cobertura> coberturas) {
         this.coberturas = coberturas;
+    }
+
+    public List<Sinistro> getSinistros() {
+        return sinistros;
+    }
+
+    public void setSinistros(List<Sinistro> sinistros) {
+        this.sinistros = sinistros;
     }
     
 }

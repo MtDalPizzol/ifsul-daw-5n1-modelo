@@ -5,9 +5,10 @@
  */
 package br.edu.ifsul.testes.junit;
 
-import br.edu.ifsul.modelo.Acessorio;
-import br.edu.ifsul.modelo.Carro;
-import br.edu.ifsul.modelo.Pessoa;
+import br.edu.ifsul.modelo.Seguro;
+import br.edu.ifsul.modelo.Sinistro;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -21,12 +22,12 @@ import static org.junit.Assert.*;
  *
  * @author dalpizzol
  */
-public class TestePersistirCarro {
+public class TestePersistirSinistro {
 
     EntityManagerFactory emf;
     EntityManager em;
 
-    public TestePersistirCarro() {
+    public TestePersistirSinistro() {
     }
 
     @Before
@@ -47,22 +48,19 @@ public class TestePersistirCarro {
 
         try {
             
-            Carro carro = new Carro();
-            Pessoa proprietario = em.find(Pessoa.class, 2);
-            Acessorio arCondicionado = em.find(Acessorio.class, 1);
+            Sinistro sinistro = new Sinistro();
+            Seguro seguro = em.find(Seguro.class, 1);
 
-            carro.setFabricante("Ford");
-            carro.setModelo("Focus");
-            carro.setPlaca("KDN-4464");
-            carro.setRenavam("06466917928");
-            carro.setAnoFabricacao(2006);
-            carro.setAnoModelo(2005);
+            sinistro.setDescricao("Acidente na BR116");
+            sinistro.setEstado("RS");
+            sinistro.setCidade("Passo Fundo");
+            sinistro.setData(new GregorianCalendar(2017, Calendar.JANUARY, 13));
+            sinistro.setSeguro(seguro);
             
-            carro.setProprietario(proprietario);
-            carro.getAcessorios().add(arCondicionado);
+            seguro.getSinistros().add(sinistro);
             
             em.getTransaction().begin();
-            em.persist(carro);
+            em.persist(sinistro);
             em.getTransaction().commit();
 
         } catch (Exception e) {

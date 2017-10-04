@@ -73,11 +73,11 @@ public class Carro implements Serializable {
     @Column(name = "ano_modelo", length = 4, nullable = false)
     private Integer anoModelo;
     
-    @NotNull(message = "A pessoa não pode ser nula")
+    @NotNull(message = "O proprietário não pode ser nulo")
     @ManyToOne
     @JoinColumn(name = "pessoa", referencedColumnName = "id", nullable = false)
     @ForeignKey(name = "fk_pessoa_id")
-    private Pessoa pessoa;
+    private Pessoa proprietario;
 
     @ManyToMany
     @JoinTable(name = "carro_acessorio",
@@ -147,12 +147,12 @@ public class Carro implements Serializable {
         this.anoModelo = anoModelo;
     }
 
-    public Pessoa getPessoa() {
-        return pessoa;
+    public Pessoa getProprietario() {
+        return proprietario;
     }
 
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
+    public void setProprietario(Pessoa proprietario) {
+        this.proprietario = proprietario;
     }
 
     public List<Acessorio> getAcessorios() {
