@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,7 +43,7 @@ public class Acessorio implements Serializable {
     @Column(name = "descricao", length = 100, nullable = false)
     private String descricao;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "carro_acessorio",
             joinColumns
             = @JoinColumn(name = "acessorio", referencedColumnName = "id", nullable = false),
